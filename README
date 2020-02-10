@@ -1,0 +1,6 @@
+SUB_FILE -> eseguibili .sh da usare per lanciare gli eseguibili (una volta fatto e' tutto automatizzato)
+			in questi file si hanno i parametri da modificare per personalizzare la simulazione
+			ATTENZIONE DIRECTORY -> NECESSARIO CHE SIA LA DIECTORY IMMEDIATAMENTE PRECEDENTE A 'SUB_FILE' 'EXEC_*' E 'PROGRAMMI'.
+									QUI SARANNO CREATE LE CARTELLE PER CIASCUNA SIMULAZIONE
+
+EXEC_*	->	unica modifica e' sulla DIRECTORY
