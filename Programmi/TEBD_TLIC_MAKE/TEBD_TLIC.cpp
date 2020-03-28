@@ -59,7 +59,7 @@ int main(int argc , char* argv[]){
 	//Define the type "Gate" as a shorthand for BondGate<ITensor>
 	using Gate = BondGate<ITensor>;   
 	
-	//Create a std::vector to hold the Trotter gates (odd and even)
+	//Create a std::vector to hold the Trotter gates 
 	auto gates = vector<Gate>();
 	for(int b = 1; b <= N-1; b++)
 		{
