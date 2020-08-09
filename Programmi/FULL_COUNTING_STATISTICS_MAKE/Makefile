@@ -13,11 +13,11 @@ APP=FULL_COUNTING_STATISTICS
 
 # 4. Add any headers your program depends on here. The make program
 #    will auto-detect if these headers have changed and recompile your app.
-HEADERS=/home/ricval/Documenti/MyLibrary/TLIC.h
+HEADERS=/home/ricval/Ricerca/MyLibrary/TLIC.h
 
 # 5. For any additional .cc files making up your project,
 #    add their full filenames here.
-CCFILES=$(APP).cpp /home/ricval/Documenti/MyLibrary/TLIC/*.cc
+CCFILES=$(APP).cpp /home/ricval/Ricerca/MyLibrary/TLIC/*.cc
 
 #################################################################
 #################################################################

@@ -5,7 +5,7 @@
 #include <string>
 #include <iomanip>
 #include <complex>
-#include "/home/ricval/Documenti/MyLibrary/TLIC.h"
+#include "/home/ricval/Ricerca/MyLibrary/TLIC.h"
 
 using namespace std;
 using namespace itensor;	
@@ -75,36 +75,36 @@ int main(int argc , char* argv[])	{
 			stringstream save_real_two;
 			save_real_two << save_real.str() << n << ".dat";
 			
-			if( fileExists( saveRealMomentsTwo.str() ) == false)
-				{
-				readFromFile(out.str(),psi);
-				measuring_moments( &psi , sites , N , n , maxLength , &saveRealMoments , &saveImagMoments);
+			//if( fileExists( saveRealMomentsTwo.str() ) == false)
+				//{
+				//readFromFile(out.str(),psi);
+				//measuring_moments( &psi , sites , N , n , maxLength , &saveRealMoments , &saveImagMoments);
 							
-				if( n % 200 == 0 ) 
-					{
-					psi.position(N/2); 									//arbitrary, in order to avoid problems in normalize(psi)
-					normalize(psi);
-					measure_generating_function( &psi , sites , N , n  , maxLength , numberPoints , &save_real , &save_imag);
-					}
-				}
-			else if( fileExists( save_real_two.str() ) == false )
-				{
-				if( n % 200 == 0 ) 
-					{
-					readFromFile(out.str(),psi);
-					psi.position(N/2); 									//arbitrary, in order to avoid problems in normalize(psi)
-					normalize(psi);
-					measure_generating_function( &psi , sites , N , n  , maxLength , numberPoints , &save_real , &save_imag);
-					}		
-				}
+				//if( n % 200 == 0 ) 
+					//{
+					//psi.position(N/2); 									//arbitrary, in order to avoid problems in normalize(psi)
+					//normalize(psi);
+					//measure_generating_function( &psi , sites , N , n  , maxLength , numberPoints , &save_real , &save_imag);
+					//}
+				//}
+			//else if( fileExists( save_real_two.str() ) == false )
+				//{
+				//if( n % 200 == 0 ) 
+					//{
+					//readFromFile(out.str(),psi);
+					//psi.position(N/2); 									//arbitrary, in order to avoid problems in normalize(psi)
+					//normalize(psi);
+					//measure_generating_function( &psi , sites , N , n  , maxLength , numberPoints , &save_real , &save_imag);
+					//}		
+				//}
 			
-			if( n<= 200 )
-				{
+			//if( n<= 200 )
+				//{
 				readFromFile(out.str(),psi);
 				psi.position(N/2); 										//arbitrary, in order to avoid problems in normalize(psi)
 				normalize(psi);
 				measure_generating_function( &psi , sites , N , n  , maxLength , numberPoints , &save_real , &save_imag);
-				}
+				//}
 			
 			c_step_end = time(NULL);
 			time_t time_elapsed_step = c_step_end - c_step_start;
@@ -134,7 +134,7 @@ int main(int argc , char* argv[])	{
 				}
 			}
 		n += nmeas;
-		} while( fileExists( out.str() ) == true );
+		} while( fileExists( out.str() ) == true || n < 1000 );
 	
 	n -= 2*nmeas;
 	out.str("");

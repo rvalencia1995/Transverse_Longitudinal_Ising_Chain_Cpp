@@ -32,6 +32,7 @@ J = 1 ;
 
 energy_state = - J * ( double((size - 1.)/size) + hx );
 cerr << hx << endl;
+cerr << hz << endl;
 cerr << "energy state : " << energy_state << endl;
 
 auto sites = SpinHalf(size,{"ConserveQNs=",false});
@@ -42,16 +43,16 @@ auto ampoH = AutoMPO(sites);
 
 for(int j = 1 ; j < size ; j++)
 {
-    ampoH += -4. * J , "Sz" , j , "Sz", j+1;
-    ampoH += -2. * J * hx , "Sz" , j ;
+    ampoH += -4. * J , "Sx" , j , "Sx", j+1;
+    ampoH += -2. * J * hx , "Sx" , j ;
     ampoH += -2. * J * hz , "Sz" , j ;
 }
 
-ampoH += -2. * J * hx , "Sz" , size ;
+ampoH += -2. * J * hx , "Sx" , size ;
 ampoH += -2. * J * hz , "Sz" , size ;
 
 auto H = toMPO(ampoH);
-auto expH = toExpH( ampoH, dbeta );
+auto expH = toExpH( ampoH , dbeta );
 
 // build state at beta=0 (maximally disordered)
 
@@ -78,9 +79,14 @@ cout << beta << " " << energy_beta << endl;
 
 do
 {   
-   
-    nmultMPO( rho_0 , prime(expH) , rho_0 ,{"MaxDim",1000,"Cutoff",1E-13}); 
-    nmultMPO( prime(expH) , rho_0 , rho_0 ,{"MaxDim",1000,"Cutoff",1E-13}); 
+    // expH(1) * rho_0(1) * expH(1)
+    nmultMPO( rho_0 , prime(expH) , rho_0 ,{"MaxDim",1000,"Cutoff",1E-14}); 
+
+    rho_0.mapPrime(2,1);
+
+    nmultMPO( expH , prime(rho_0) , rho_0 ,{"MaxDim",1000,"Cutoff",1E-14}); 
+
+    rho_0.mapPrime(2,1);
 
     rho_0 /= trace(rho_0);
 
@@ -93,6 +99,9 @@ do
 measure_generating_function( &rho_0 , sites , size , int(size/2) , 200 , hx , hz);
 
 return 0;
+
+
+
 // measuring observable Tr(rho O). 
 
 // MPO operator = MPO(sites);

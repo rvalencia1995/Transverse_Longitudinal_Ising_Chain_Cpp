@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #modificare-------------------------------------------------------------
-CURRENTDIR=/home/ricval/Scrivania/bin									#directory corrente dove sta eseguibile
+CURRENTDIR=${PWD}									#directory corrente dove sta eseguibile
 bin_file_name=${CURRENTDIR}/Programmi/FULL_COUNTING_STATISTICS
 
 echo ${bin_file_name}
